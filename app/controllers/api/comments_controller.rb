@@ -9,8 +9,15 @@ module Api
     end
 
     def create
-      comment = @post.comments.create(comment_params)
-      render json: ::CommentSerializer.new(comment)
+      @comment = @post.comments.new(comment_params)
+
+      if @comment.valid?
+        @comment.save
+        render json: ::CommentSerializer.new(@comment)
+      else
+        errors = @comment.errors.full_messages
+        render json: { errors: errors }
+      end
     end
 
     def update

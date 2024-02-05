@@ -9,8 +9,15 @@ module Api
     end
 
     def create
-      post = Post.create(post_params)
-      render json: ::PostSerializer.new(post)
+      @post = Post.new(post_params)
+      
+      if @post.valid?
+        @post.save
+        render json: ::PostSerializer.new(@post)
+      else
+        errors = @post.errors.full_messages
+        render json: { errors: errors }
+      end
     end
 
     def show
