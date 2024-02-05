@@ -17,7 +17,7 @@ module Api
 
     private
       def post_params
-        params.require(:post).permit(:title, :body, :tags)
+        params.require(:post).permit(:title, :body, :votes, :tags)
       end
   end
 end
