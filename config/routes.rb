@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :posts, only: %i[index show create] do
-      resources :comments, only: %i[index]
+      resources :comments, only: %i[index create]
     end
   end
 end
