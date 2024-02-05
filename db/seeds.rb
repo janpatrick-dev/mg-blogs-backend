@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user1 = User.new
+user1.username = 'JohnC'
+user1.name = 'John Cena'
+user1.email = 'fuentes.vincent96@gmail.com'
+user1.password = 'john12345'
+user1.save!
+
+user2 = User.new
+user2.username = 'DwayneD'
+user2.name = 'Dwayne Johnson'
+user2.email = 'vzangel247@gmail.com'
+user2.password = 'therock12345'
+user2.save!
