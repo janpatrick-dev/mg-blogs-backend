@@ -10,6 +10,8 @@ module Api
 
     def create
       @post = Post.new(post_params)
+      puts "ASDASDSADASD"
+      puts @post.to_json
       
       if @post.valid?
         @post.save
@@ -44,7 +46,7 @@ module Api
 
     private
       def post_params
-        params.require(:post).permit(:title, :body, :votes, :tags).merge(user: current_user)
+        params.require(:post).permit(:title, :body, :votes, tags: []).merge(user: current_user)
       end
 
       def set_post
