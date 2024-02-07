@@ -4,7 +4,7 @@ module Api
     before_action :set_post, only: %i[show update destroy]
     
     def index
-      posts = Post.all.order(created_at: :desc)
+      posts = Post.where(is_draft: false).order(created_at: :desc)
       render json: ::PostSerializer.new(posts)
     end
 
