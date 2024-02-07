@@ -11,22 +11,13 @@
 user1 = User.new
 user1.username = 'JohnC'
 user1.name = 'John Cena'
-<<<<<<< Updated upstream
-user1.email = 'fuentes.vincent96@gmail.com'
-=======
 user1.email = 'vzangel247@gmail.com'
->>>>>>> Stashed changes
 user1.password = 'john12345'
 user1.save!
 
 user2 = User.new
 user2.username = 'DwayneD'
 user2.name = 'Dwayne Johnson'
-<<<<<<< Updated upstream
-user2.email = 'vzangel247@gmail.com'
-user2.password = 'therock12345'
-user2.save!
-=======
 user2.email = 'johntest@gmail.com'
 user2.password = 'therock12345'
 user2.save!
@@ -80,4 +71,3 @@ post1.comments.create!(
 # )
 
 # puts "Seeded #{Post.count} posts and #{Comment.count} comments."
->>>>>>> Stashed changes
