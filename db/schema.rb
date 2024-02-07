@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_05_063317) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_07_035438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.string "message"
-    t.integer "votes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
     t.bigint "comment_id"
+    t.jsonb "votes", default: {"upvotes"=>[], "downvotes"=>[]}
     t.index ["comment_id"], name: "index_comments_on_comment_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -30,11 +30,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_05_063317) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "votes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "tags", default: [], array: true
     t.bigint "user_id", null: false
+    t.jsonb "votes", default: {"upvotes"=>[], "downvotes"=>[]}
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
