@@ -10,8 +10,6 @@ module Api
 
     def create
       @post = Post.new(post_params)
-      puts "ASDASDSADASD"
-      puts @post.to_json
       
       if @post.valid?
         @post.save
