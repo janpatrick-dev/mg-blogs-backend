@@ -14,5 +14,6 @@ class CommentSerializer
     }
   end
 
-  attributes :comments, :created_at
+  attributes :replies do |comment| comment.comments end
+  attributes :created_at
 end

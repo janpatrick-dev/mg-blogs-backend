@@ -42,7 +42,10 @@ module Api
 
     private
       def comment_params
-        params.require(:comment).permit(:message, :votes).merge(user: current_user)
+        params.require(:comment).permit(
+          :message, 
+          :votes => [:upvotes => [], :downvotes => []],
+        ).merge(user: current_user)
       end
 
       def set_post
