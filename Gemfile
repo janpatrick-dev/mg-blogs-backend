@@ -6,7 +6,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.1.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "sprockets-rails", '3.4.2'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -46,6 +46,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "rack-cors"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -71,3 +73,4 @@ group :test do
 end
 
 gem "jsonapi-serializer"
+gem "devise-jwt"
