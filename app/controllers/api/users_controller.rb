@@ -4,7 +4,7 @@ module Api
     def get_user_posts
       begin
         user = User.find(params[:id])
-        render json: { posts: user.posts }
+        render json: ::PostSerializer.new(user.posts)
       rescue ActiveRecord::RecordNotFound
         render json: {
           status: {
