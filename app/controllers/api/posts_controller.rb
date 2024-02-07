@@ -44,7 +44,7 @@ module Api
 
     private
       def post_params
-        params.require(:post).permit(:title, :body, :votes, :tags).merge(user: current_user)
+        params.require(:post).permit(:title, :body, :votes, tags: []).merge(user: current_user)
       end
 
       def set_post
