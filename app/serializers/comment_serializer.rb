@@ -16,6 +16,6 @@ class CommentSerializer
     }
   end
 
-  attributes :replies do |comment| comment.comments end
+  attributes :replies do |comment| CommentSerializer.new(comment.comments) end
   attributes :created_at
 end
