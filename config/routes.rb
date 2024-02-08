@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
+    get '/users/:id', to: 'users#get_user_by_id'
     get '/users/:id/posts', to: 'users#get_user_posts'
 
     resources :posts, only: %i[index show create update destroy] do
