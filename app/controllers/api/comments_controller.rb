@@ -1,7 +1,7 @@
 module Api
   class CommentsController < ApiController
-    before_action :set_post, except: %i[destroy]
-    before_action :set_comment, only: %i[update destroy upvote_comment downvote_comment]
+    before_action :set_post, except: %i[show destroy]
+    before_action :set_comment, only: %i[update destroy upvote_comment downvote_comment add_reply_to_comment]
     before_action :authenticate_user!, only: %i[create update destroy upvote_comment downvote_comment]
 
     def index
@@ -18,6 +18,10 @@ module Api
         errors = @comment.errors.full_messages
         render json: { errors: errors }
       end
+    end
+
+    def show
+      render json: ::CommentSerializer.new(@comment)
     end
 
     def update
@@ -41,6 +45,19 @@ module Api
     end
 
     # CUSTOM ROUTES
+
+    def add_reply_to_comment
+      parent_comment = @post.comments.find(params[:id])
+      reply = parent_comment.comments.new(comment_params.merge(post_id: params[:post_id]))
+
+      if reply.valid?
+        reply.save
+        render json: ::CommentSerializer.new(reply)
+      else
+        errors = reply.errors.full_messages
+        render json: { errors: errors }
+      end
+    end
 
     def upvote_comment
       toggle_vote('upvotes')
