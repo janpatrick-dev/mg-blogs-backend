@@ -3,9 +3,18 @@ class PostSerializer
 
   set_key_transform :camel_lower
 
-  attributes :id, :title, :body, :votes, :tags
+  attributes :id, :title, :body, :tags
 
-  attribute :formatted_created_at do |record|
-    record.created_at.strftime("%B %d %Y")
+  attributes :comments_count do |post| post.comments.length end
+
+  attributes :votes
+
+  attributes :user do |post|
+    {
+      id: post.user.id,
+      name: post.user.name
+    }
   end
+
+  attributes :created_at
 end

@@ -11,14 +11,14 @@
 user1 = User.new
 user1.username = 'JohnC'
 user1.name = 'John Cena'
-user1.email = 'vincentthetester@gmail.com'
+user1.email = 'vzangel247@gmail.com'
 user1.password = 'john12345'
 user1.save!
 
 user2 = User.new
 user2.username = 'DwayneD'
 user2.name = 'Dwayne Johnson'
-user2.email = 'test@gmail.com'
+user2.email = 'johntest@gmail.com'
 user2.password = 'therock12345'
 user2.save!
 
@@ -36,17 +36,23 @@ post2 = user2.posts.create!(
 #post comments
 post1.comments.create!(
   message: "This is a manually created comment for post 1.",
-  user: user1,
-  votes: 5
+  user: user1
 )
 
 post1.comments.create!(
   message: "Another comment for post 1, also manually created.",
-  user: user2,
-  votes: 8
+  user: user2
 )
 
-
+#new implementation of the votes 
+# post1.comments.create!(
+#   message: "Another comment for post 1, also manually created.",
+#   user: user2,
+#   votes: {
+#     upvotes: [], 
+#     downvotes: []
+#   }
+# )
 #commens for the comments
 # comment1 = post1.comments.first
 # comment2 = post2.comments.first

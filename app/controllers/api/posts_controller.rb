@@ -4,7 +4,7 @@ module Api
     before_action :set_post, only: %i[show update destroy]
     
     def index
-      posts = Post.all
+      posts = Post.where(is_draft: false).order(created_at: :desc)
       render json: ::PostSerializer.new(posts)
     end
 
@@ -13,7 +13,7 @@ module Api
       
       if @post.valid?
         @post.save
-        render json: ::PostSerializer.new(@post)
+        render json: ::PostDraftSerializer.new(@post)
       else
         errors = @post.errors.full_messages
         render json: { errors: errors }
@@ -27,7 +27,7 @@ module Api
     def update
       if current_user && current_user.id == @post.user.id
         @post.update(post_params)
-        render json: { message: 'Post was updated successfully.' }
+        render json: ::PostDraftSerializer.new(@post)
       else
         render json: { status: 401, message: 'Unauthorized' }
       end
@@ -44,7 +44,14 @@ module Api
 
     private
       def post_params
-        params.require(:post).permit(:title, :body, :votes, :tags).merge(user: current_user)
+        params.require(:post).permit(
+          :title, 
+          :body, 
+          :votes, 
+          :is_draft,
+          :votes => [:upvotes => [], :downvotes => []],
+          tags: []
+        ).merge(user: current_user)
       end
 
       def set_post
