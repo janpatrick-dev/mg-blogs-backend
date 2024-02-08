@@ -3,11 +3,13 @@ class PostSerializer
 
   set_key_transform :camel_lower
 
-  attributes :id, :title, :body, :tags
+  attributes :id, :title, :body
 
   attributes :comments_count do |post| post.comments.length end
 
   attributes :votes_count
+
+  attributes :tags
 
   attributes :votes
 
