@@ -53,7 +53,6 @@ post1.comments.create!(
 #     downvotes: []
 #   }
 # )
-
 #commens for the comments
 # comment1 = post1.comments.first
 # comment2 = post2.comments.first
