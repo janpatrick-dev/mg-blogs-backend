@@ -17,4 +17,6 @@ class PostSerializer
   end
 
   attributes :created_at
+
+  attributes :is_draft
 end
