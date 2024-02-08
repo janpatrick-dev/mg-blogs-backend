@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get '/users/:id', to: 'users#get_user_by_id'
     get '/users/:id/posts', to: 'users#get_user_posts'
 
+    get '/posts/trending', to: 'posts#get_trending_posts'
+
     put '/posts/:id/upvote', to: 'posts#upvote_post'
     put '/posts/:id/downvote', to: 'posts#downvote_post'
 

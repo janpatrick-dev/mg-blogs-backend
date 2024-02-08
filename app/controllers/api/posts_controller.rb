@@ -44,6 +44,14 @@ module Api
 
     # CUSTOM ROUTES
 
+    def get_trending_posts
+      posts = Post.where(is_draft: false).order(votes_count: :desc).limit(10)
+
+      
+
+      render json: ::PostSerializer.new(posts)
+    end
+
     def upvote_post
       toggle_vote('upvotes')
       remove_vote('downvotes')
