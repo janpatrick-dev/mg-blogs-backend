@@ -46,9 +46,6 @@ module Api
 
     def get_trending_posts
       posts = Post.where(is_draft: false).order(votes_count: :desc).limit(10)
-
-      
-
       render json: ::PostSerializer.new(posts)
     end
 
