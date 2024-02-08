@@ -5,6 +5,8 @@ class CommentSerializer
 
   attributes :id, :message
 
+  attributes :votes_count
+
   attributes :votes
 
   attributes :user do |post|

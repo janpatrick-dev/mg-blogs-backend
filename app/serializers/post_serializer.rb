@@ -7,6 +7,8 @@ class PostSerializer
 
   attributes :comments_count do |post| post.comments.length end
 
+  attributes :votes_count
+
   attributes :votes
 
   attributes :user do |post|
