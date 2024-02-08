@@ -15,5 +15,19 @@ module Api
       end
     end
 
+    def get_user_by_id
+      begin
+        user = User.find(params[:id])
+        render json: ::UserSerializer.new(user)
+      rescue ActiveRecord::RecordNotFound
+        render json: {
+          status: {
+            code: 404,
+            message: 'User does not exist.'
+          }
+        }, status: :not_found
+      end
+    end
+
   end
 end
